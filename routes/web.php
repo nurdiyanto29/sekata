@@ -23,30 +23,20 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-// Route::get('/login', [AuthController::class, 'showFormLogin'])->name('login');
-// Route::get('/login', [AuthController::class, 'login'])->name('log');
-
-
-
-
 Route::get('/transaction', [TransactionController::class, 'api'])->name('transaction');
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 Route::get('/halamanSewa', [HomeController::class, 'tipe'])->name('tipe');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/jadwal/perform', [HomeController::class, 'jadwalperform'])->name('jadwalperform');
-
-
-
 //cust
+
+
+Route::delete('/tiketku/delete/{id}', [HomeController::class, 'destroy'])->name('tiket.delete');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 route::group(['middleware' =>['auth','ceklevel:customer']], function () {
 Route::get('/user/sewa/{id}', [HomeController::class, 'sewa'])->name('user.sewa');
- 
 Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
 Route::get('/pesanann/{id}', [PesananController::class, 'pesanan'])->name('pesanann.index');
-
 Route::post('/home/create', [HomeController::class, 'store'])->name('home.store');
 Route::post('/home/pembayaran', [HomeController::class, 'bayarstore'])->name('pembayaran.store');
 // Route::get('/home/bayar', [HomeController::class, 'bayar'])->name('home.bayar');
@@ -68,21 +58,16 @@ Route::group(['middleware' =>['auth','ceklevel:admin']], function () {
     Route::post('/jadwal/index', [JadwalController::class, 'store'])->name('jadwal.store');
     // Route::post('/jadwal', [HomeController::class, 'sewa'])->name('sewa.store');
     Route::get('/jadwal/create', [JadwalController::class, 'create'])->name('jadwal.create');
-
-
     Route::get('/tipe/index', [TipeController::class, 'index'])->name('tipe.index')->middleware(['auth']);
     Route::put('/tipe/update/{id}', [TipeController::class, 'update'])->name('tipe.update');
     Route::get('/tipe/edit/{id}', [TipeController::class, 'edit'])->name('tipe.edit');
     Route::delete('/tipe/delete/{id}', [TipeController::class, 'destroy'])->name('tipe.delete');
+
     Route::post('/tipe/index', [TipeController::class, 'store'])->name('tipe.store');
     Route::get('/tipe/create', [TipeController::class, 'create'])->name('tipe.create');
-    
-   
+    Route::get('/pembayaran/detail/{id}', [PembayaranController::class, 'show'])->name('show');
 
-    // Route::post('/transaction', [TransactionController::class, 'store']);
-    // Route::put('/transaction/{id}', [TransactionController::class, 'update']);
-    // Route::get('/transaction/{id}', [TransactionController::class, 'show']);
-    // Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
+
 });
 Route::get('/pembayaran/sewa', [PembayaranController::class, 'index'])->name('pembayaran.index')->middleware(['auth']);
 Route::delete('/pembayaran/delete/{id}', [PembayaranController::class, 'destroy'])->name('pembayaran.delete');

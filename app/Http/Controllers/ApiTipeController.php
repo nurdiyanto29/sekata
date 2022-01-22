@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Tipe;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\Catch_;
 use PhpParser\Node\Stmt\TryCatch;
+use Svg\Tag\Path;
 use Symfony\Component\HttpFoundation\Response;
 
 class ApiTipeController extends Controller
@@ -109,30 +111,39 @@ class ApiTipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $tipe = Tipe::findOrFail($id);
-        $validator = Validator::make($request->all(), [
-            'tipe_perform' => ['required'],
-            'deskripsi' => ['required'],
-            'harga_sewa' => ['required']
-
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(
-                $validator->errors(),
-                Response::HTTP_UNPROCESSABLE_ENTITY
-            );
-        }
-
         try {
-            $tipe->update($request->all());
-            return response()->json($tipe, Response::HTTP_OK);
-        } catch (QueryException $e) {
+            $validator = Validator::make($request->all(), [
+                'tipe_perform' => 'required',
+                'deskripsi' => 'required',
+                'harga_sewa' => 'required',
+               
+            ]);
+            if ($validator->fails()) {
+                return response()->json(
+                    $validator->errors(),
+                    Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+                else{
+                    $tipes = Tipe::find($id);
+                    $tipes->tipe_perform = $request->tipe_perform;
+                    $tipes->harga_sewa = $request->harga_sewa;
+                    $tipes->deskripsi = $request->deskripsi;
+                    if($request->cover && $request->cover->isVaid()){
+                        $file_name = time().'.'.$request->cover->extension();
+                        $request ->cover->move(public_path('tipe'),$file_name);
+                        $path = "public/tipe/$file_name";
+                        $tipes->cover = $path;
+                    }
+                    $tipes->update();
+                    return response()->json($tipes, Response::HTTP_OK);
+                }
+
+        }catch (QueryException $e) {
             return response()->json([
                 'message' => "failed" . $e->errorInfo
             ]);
         }
+
     }
 
     /**
@@ -144,6 +155,7 @@ class ApiTipeController extends Controller
     public function destroy($id)
     {
         $tipe = Tipe::findOrFail($id);
+        $tipe->jadwal()->delete();
         try {
             $tipe->delete();
             return response()->json($tipe, Response::HTTP_OK);

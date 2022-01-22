@@ -52,7 +52,9 @@ class PembayaranController extends Controller
      */
     public function show($id)
     {
-        //
+        $response = Http::get('http://127.0.0.1:8000/api/pembayaran/'. $id);
+        $data = $response->json();
+        return view('admin.pembayaran.detail', compact('data'));
     }
 
     /**

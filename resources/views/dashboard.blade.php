@@ -20,10 +20,11 @@
     <div class="container-fluid">
       <!-- Small boxes (Stat box) -->
       <div>
-        <h4>Selamat datang Admin  !! tetap semangat dan selalu jaga mood.</h4>
+        <h4>Selamat datang Admin !! Tetap semangat !</h4><br>
+        <h5>Gunakan Sistem Ini untuk Kemajuan Sekata Barongsai</h3>
       </div>
-    
-     
+
+
       </div>
       </section>
 </div>

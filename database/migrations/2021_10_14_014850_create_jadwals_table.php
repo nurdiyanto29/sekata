@@ -17,7 +17,13 @@ class CreateJadwalsTable extends Migration
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
             $table->date('tgl_perform');
+            $table->time('jam');
+            $table->string('alamat');
+            $table->string('status');
+            $table->string('acara');
+            $table->string('hp');
             $table->integer('tipe_id');
+            $table->integer('user_id');
             $table->timestamp('time')->default(now());
             $table->timestamps();
         });

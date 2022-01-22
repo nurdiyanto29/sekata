@@ -19,7 +19,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="about-img">
-                    <img src="img/slider6.png" alt="Image">
+                    <img src="img/sekata.jpg" alt="Image">
                     <button type="button" class="btn-play" data-toggle="modal" data-src="{{asset('https://www.youtube.com/embed/wUZ8DxABFHA')}}" data-target="#videoModal">
                         <span></span>
                     </button>

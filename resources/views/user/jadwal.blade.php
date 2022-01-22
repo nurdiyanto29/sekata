@@ -18,7 +18,7 @@
             <h2>Sekata Barongsai</h2>
         </div>
         <div class="row">
-            @foreach ($data as $d) 
+            @foreach ($data as $d)
             @if ($d['tgl_perform'] >= date("Y-m-d", strtotime('today')) && $d['status'] == 'Sudah Bayar (Terkonfirmasi)' )
             <div class="col-md-6">
                 <div class="blog-item">
@@ -34,7 +34,7 @@
                             <p>
                                Pada Tanggal {{ $d['tgl_perform']}} Sekata Barongsai akan melakukan perform di {{ $d['alamat']}} mulai pada pukul {{ $d['jam']}} - Selesai dalam acara {{ $d['acara']}}. Pada perform kali ini akan menampilkan barongsai dengan jenis Perform {{ $d['tipe']['tipe_perform']}}.
                             </p>
-                           
+
                         </div>
                     </div>
                 </div>

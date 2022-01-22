@@ -58,6 +58,7 @@
              <h5 class= "my-3">Pemesan        :{{ $p->user->name}}</h5>
              <h5 class= "my-3">Tanggal Perform:{{ $p->tgl_perform}}</h5>
              <h5 class= "my-3">Alamat Perform :{{ $p->alamat}}</h5>
+             <h5 class= "my-3">No Tlp :{{ $p->hp}}</h5>
              <h5 class= "my-3">Tipe Perform   :{{ $p->tipe->tipe_perform}}</h5>
               <hr>
               <div class="bg-red py-2 px-3 mt-4">
@@ -80,7 +81,8 @@
             <hr>
             <div class="bg-gray py-2 px-3 mt-4">
               <h2 class="mb-0">
-               Total Bayar : Rp.{{ $p->tipe->harga_sewa}}.00
+               
+               Total Bayar : {{"Rp.".number_format( $p->tipe->harga_sewa,2,',','.')}}
               </h2>
             </div>
               </div>

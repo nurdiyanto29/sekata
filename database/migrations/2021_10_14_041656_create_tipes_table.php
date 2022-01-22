@@ -16,6 +16,8 @@ class CreateTipesTable extends Migration
         Schema::create('tipes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipe_perform');
+            $table->string('cover');                             
+            $table->string('deskripsi');                             
             $table->integer('harga_sewa');
             $table->timestamp('time')->default(now());
             $table->timestamps();

@@ -372,9 +372,9 @@ a:focus {
 .page-header {
     position: relative;
     margin-bottom: 45px;
-    padding: 150px 0 90px 0;
+    padding: 400px 0 90px 0;
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(../img/slider7.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(../img/back2.jpg);
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -706,7 +706,7 @@ a:focus {
     display: block;
     width: 100px;
     height: 100px;
-    background: #fbaf32;
+    background: #f7f7f7;
     border-radius: 50%;
     animation: pulse-border 1500ms ease-out infinite;
 }
@@ -721,7 +721,7 @@ a:focus {
     display: block;
     width: 100px;
     height: 100px;
-    background: #fbaf32;
+    background: #fb3232;
     border-radius: 50%;
     transition: all 200ms;
 }
@@ -1042,11 +1042,13 @@ a:focus {
     position: relative;
     border-radius: 15px 15px 0 0;
     overflow: hidden;
+    object-fit: cover
 }
 
 .team .team-img img {
     position: relative;
-    width: 100%;
+    max-width: 100%;
+    height: auto;
     margin-top: 15px;
     transform: scale(1.1);
     transition: .3s;
@@ -1259,6 +1261,12 @@ a:focus {
 
 .blog .blog-img img {
     width: 100%;
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+    transform: scale(1.1);
+    transition: .3s;
 }
 
 .blog .blog-content {

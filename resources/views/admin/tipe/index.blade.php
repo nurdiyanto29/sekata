@@ -30,6 +30,7 @@
                                     <th>No</th>
                                     <th>Tipe Perform</th>
                                     <th>Harga Sewa</th>
+                                    <th>Cover</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,7 +44,8 @@
                                 <tr>
                                     <td><b>{{$i++}}<b></td>
                                         <td>{{$t['tipe_perform']}}</td>
-                                        <td>{{$t['harga_sewa']}}</td>
+                                        <td>{{"Rp.".number_format( $t['harga_sewa'],2,',','.')}}</td>
+                                        <td> <img src="{{asset('tipe/'.$t['cover'])}}" style="height: 160px" alt="Image"></td>
                                    
                                     <td>
                                         <form action="{{ route('tipe.delete', $t['id'])}}" method="post">

@@ -17,7 +17,7 @@ class ApiPembayaranController extends Controller
      */
     public function index()
     {
-        $pembayaran = Pembayaran::with('jadwal', 'user')->get();
+        $pembayaran = Pembayaran::with('jadwal', 'user')->orderBy('id','desc')->get();
         return response()->json($pembayaran, Response::HTTP_OK);
     }
 
@@ -75,7 +75,8 @@ class ApiPembayaranController extends Controller
      */
     public function show($id)
     {
-        //
+        $pembayaran = Pembayaran::with('jadwal')->findOrFail($id);
+        return response()->json($pembayaran, Response::HTTP_OK);
     }
 
     /**

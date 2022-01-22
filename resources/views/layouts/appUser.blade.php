@@ -86,9 +86,9 @@
                             <div class="col-md-4">
                                 <div class="footer-contact">
                                     <h2>Alamat Kami</h2>
-                                    <p><i class="fa fa-map-marker-alt"></i>Jalan Madiun 123 Jawa Timur</p>
-                                    <p><i class="fa fa-phone-alt"></i>089999999999</p>
-                                    <p><i class="fa fa-envelope"></i>info@example.com</p>
+                                    <p><i class="fa fa-map-marker-alt"></i>Jalan bali 60 Madiun Jawa Timur</p>
+                                    <p><i class="fa fa-phone-alt"></i>08562569695</p>
+                                    <p><i class="fa fa-envelope"></i>sekatamadiun@gmail.com</p>
                                    
                                 </div>
                             </div>
@@ -102,8 +102,8 @@
                                #janganLupaPakaiMasker
                             </p>
                             <div class="footer-social">
-                                <a href=""><i class="fab fa-youtube"></i></a>
-                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.youtube.com/channel/UC0QWAGYQgObUX2VcZoluFjQ"><i class="fab fa-youtube"></i></a>
+                                <a href="https://www.instagram.com/sekata.barongsai/"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>

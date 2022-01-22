@@ -39,6 +39,14 @@
                                       <input type="text" class="form-control" name="alamat" id="alamat" value="{{ $jadwal['alamat'] }}">
                                     </div>
                                     <div class="form-group">
+                                      <label for="acara">Acara</label>
+                                      <input type="text" class="form-control" name="acara" id="acara" value="{{ $jadwal['acara'] }}">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="jam">Jam</label>
+                                      <input type="time" class="form-control" name="jam" id="jam" value="{{ $jadwal['jam'] }}">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="tipe_id">Tipe Perform</label>
                                         <div class="col-md-12">
                                             <select id="tipe_id" type="text" class="form-control" name="tipe_id">
@@ -46,7 +54,11 @@
                                                 <option value={{ $b['id']}}>{{ $b['tipe_perform']}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>  
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="hp">No Tlp</label>
+                                      <input type="number" class="form-control" name="hp" id="hp" value="{{ $jadwal['hp'] }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="user_id">Penyewa</label>
@@ -56,11 +68,11 @@
                                                 <option value={{ $u['id']}}>{{ $u['name']}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>  
+                                        </div>
                                     </div>
                                   </div>
                                   <!-- /.card-body -->
-                    
+
                                   <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                   </div>
@@ -72,7 +84,7 @@
                           <!-- /.row -->
                         </div><!-- /.container-fluid -->
                       </section>
-    
+
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

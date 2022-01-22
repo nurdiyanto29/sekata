@@ -1,43 +1,104 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>E-Ticket TAMI JAYA</title>
-        <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div class="container" style="margin-bottom: 100px"></div>
-        <div class="container" style="padding-left: 150px">
-            <h1 class="font-weight-light">e-NOTA</h1>
-            <h4 class="font-weight-light" style="margin-bottom: 10px">Pemesanan Barongsai</h4>
-            <table>
-                @php
-                    $x=0;
-                @endphp
-                        @foreach ($pesanan as $p )
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nota Kecil</title>
 
-                        {{-- @php
-                            $x++;
-                        @endphp
-                        <tr><td>Penumpang {{ $x }}</code></td></tr> --}}
-                        <tr><td>Id Pesanan : <code>{{ $p->id }}</code></td></tr>
-                        <tr><td>Nama Penyewa: {{ $p->user->name }}</code></td></tr>
-                        <tr><td>No Hp : {{ $p->user->no_tlp }}</code></td></tr>
-                        <tr><td><hr></td></tr>
-                        <tr><td>Tipe Perform : {{ $p->tipe->tipe_perform}}</td></tr>
-                        <tr><td>Tgl Perform : {{ $p->tgl_perform}}</td></tr>
-                        <tr><td>Alamat Perform : {{ $p->alamat }}</td></tr>
-                        <tr><td><hr></td></tr>
-                        @endforeach
-                        <tr><td>Total Bayar : Rp. {{ number_format($p->tipe->harga_sewa) }},-</td></tr>
-                        <tr><td>Status : {{ ($p->status) }}</td></tr>
+    <?php
+    $style = '
+    <style>
+        * {
+            font-family: "consolas", sans-serif;
+        }
+        p {
+            display: block;
+            margin: 3px;
+            font-size: 10pt;
+        }
+        table td {
+            font-size: 9pt;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-right {
+            text-align: right;
+        }
 
-             
-            </table>
-        </div>
-    </body>
+        @media print {
+            @page {
+                margin: 0;
+                size: 75mm
+    ';
+    ?>
+    <?php
+    $style .=
+        ! empty($_COOKIE['innerHeight'])
+            ? $_COOKIE['innerHeight'] .'mm; }'
+            : '}';
+    ?>
+    <?php
+    $style .= '
+            html, body {
+                width: 70mm;
+            }
+            .btn-print {
+                display: none;
+            }
+        }
+    </style>
+    ';
+    ?>
+
+    {!! $style !!}
+</head>
+<body onload="window.print()">
+    <button class="btn-print" style="position: absolute; right: 1rem; top: rem;" onclick="window.print()">Print</button>
+    <div class="text-center">
+        <h3 style="margin-bottom: 5px;">Sekata Barongsai</h3>
+        <p>MADIUN</p>
+    </div>
+    <p class="text-center">===================================</p>
+    <br>
+    <div>
+        <p style="float: left;">{{ date('d-m-Y') }}</p>
+    </div>
+    <div class="clear-both" style="clear: both;"></div>
+    <br>
+    <table width="100%" style="border: 0;">
+        @php
+        $x=0;
+       @endphp
+            @foreach ($pesanan as $p )
+            <tr><td>Kode Transaksi : <code>{{ $p->id }}</code></td></tr>
+            <tr><td>Nama Penyewa: {{ $p->user->name }}</code></td></tr>
+            <tr><td>No Hp : {{ $p->hp}}</code></td></tr>
+            <tr><td><hr></td></tr>
+            <tr><td>Tipe Perform : {{ $p->tipe->tipe_perform}}</td></tr>
+            <tr><td>Tgl Perform : {{ $p->tgl_perform}}</td></tr>
+            <tr><td>Alamat Perform : {{ $p->alamat }}</td></tr>
+            <tr><td><hr></td></tr>
+            @endforeach
+            <tr><td>Total Bayar : {{"Rp.".number_format( $p->tipe->harga_sewa,2,',','.')}}</td></tr>
+            <tr><td><strong> Status : {{ ($p->status) }}</strong></td></tr> --}}
+
+    </table>
+    <p class="text-center">-----------------------------------</p>
+    <p class="text-center">===================================</p>
+    <p class="text-center">-- TERIMA KASIH --</p>
+
+    <script>
+        let body = document.body;
+        let html = document.documentElement;
+        let height = Math.max(
+                body.scrollHeight, body.offsetHeight,
+                html.clientHeight, html.scrollHeight, html.offsetHeight
+            );
+
+        document.cookie = "innerHeight=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "innerHeight="+ ((height) * 0.264583);
+    </script>
+</body>
 </html>

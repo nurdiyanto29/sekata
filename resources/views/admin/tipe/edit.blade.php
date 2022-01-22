@@ -38,18 +38,30 @@
                                       <label for="harga_sewa">Harga Sewa</label>
                                       <input type="number" class="form-control" name="harga_sewa" id="harga_sewa" value="{{ $tipe['harga_sewa'] }}">
                                     </div>
-                                    <div class="row">
-                                      <div class="col-sm-12">
+                                      <div class="form-group">
+                                        <label for = "cover" class="control-label col-md-12 col-sm-12 col-xs-12">Cover</label><br>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                          <img src="{{asset('tipe/'.$tipe['cover'])}}" width='80' height='60'/>
+                                          <input type="file" id="cover" name="cover" value="{{ $tipe['cover'] }}">
+                                          <p>Kosongkan apabila tidak ingin merubah cover</p>
+                                        </div>
+                                      </div><br>
+
+                                    {{-- <div class="form-group row">
+                                      <label for="cover" class="col-sm-2 col-form-label">Cover</label>
+                                      <div class="col-sm-10">
+                                          <input type="file" name="cover" class="form-control" id="cover" ><?php echo $tipe['cover'] ?>
+                                      </div>
+                                  </div> --}}
                                         <!-- textarea -->
                                         <div class="form-group">
-                                          <label>Keterangan</label>
-                                          <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" value="{{ $tipe['deskripsi'] }}"></textarea>
-                                        </div>
+                                          <label for="deskripsi">Keterangan</label>
+                                          <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3"><?php echo $tipe['deskripsi'] ?></textarea>
+
                                       </div>
-                                      </div>
-                                  </div>
+
                                   <!-- /.card-body -->
-                    
+
                                   <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                   </div>
@@ -61,7 +73,7 @@
                           <!-- /.row -->
                         </div><!-- /.container-fluid -->
                       </section>
-    
+
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

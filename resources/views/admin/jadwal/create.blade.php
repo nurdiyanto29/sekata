@@ -47,6 +47,7 @@
                                       <label for="acara">acara</label>
                                       <input type="text" class="form-control" name="acara" id="acara">
                                     </div>
+                                   
                                     <div class="form-group">
                                         <label for="tipe_id">Penyewa</label>
                                         <div class="col-md-12">
@@ -57,6 +58,10 @@
                                                 @endforeach
                                             </select>
                                         </div>  
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="hp">No Tlp</label>
+                                      <input type="number" class="form-control" name="hp" id="hp">
                                     </div>
                                     <div class="form-group">
                                         <label for="tipe_id">Tipe Perform</label>

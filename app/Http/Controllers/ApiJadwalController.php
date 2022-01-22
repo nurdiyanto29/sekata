@@ -18,9 +18,8 @@ class ApiJadwalController extends Controller
      */
     public function index()
     {
-        $jadwal = Jadwal::with('tipe','user','pembayaran')->get();
+        $jadwal = Jadwal::with('tipe', 'user', 'pembayaran')->get();
         return response()->json($jadwal, Response::HTTP_OK);
-
     }
 
     /**
@@ -41,34 +40,36 @@ class ApiJadwalController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make ($request->all(), [
+        $validator = Validator::make($request->all(), [
             'tgl_perform' => ['required'],
-            'alamat' => ['required'],          
-            'acara' => ['required'],          
-            'jam' => ['required'],          
-            'tipe_id' => ['required'],          
-            'user_id' => ['required']          
+            'alamat' => ['required'],
+            'acara' => ['required'],
+            'jam' => ['required'],
+            'tipe_id' => ['required'],
+            'user_id' => ['required'],
+            'hp' => ['required']
         ]);
-        
-        if($validator->fails()) {
-            return response()->json($validator->errors(),
-            Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        if ($validator->fails()) {
+            return response()->json(
+                $validator->errors(),
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
         }
 
-        try{
-            $jadwal = Jadwal::create($request-> all());
+        try {
+            $jadwal = Jadwal::create($request->all());
             // $response=[
             //     'message' => 'transaksi berhasil',
             // 'data' => $jadwal
             // ];
             // return response()->json($jadwal, Response::HTTP_OK);
             return response()->json($jadwal, Response::HTTP_CREATED);
-
-        } catch(QueryException $e) {
-            return response()->json([$e->errorInfo
+        } catch (QueryException $e) {
+            return response()->json([
+                $e->errorInfo
             ]);
         }
-
     }
 
     /**
@@ -79,14 +80,13 @@ class ApiJadwalController extends Controller
      */
     public function show($id)
     {
-        $jadwal = Jadwal::findOrFail($id);
+        $jadwal = Jadwal::with('user', 'tipe')->findOrFail($id);
         // $response=[
         //     'message' => 'Detail transaksi',
         // 'data' => $jadwal
         // ];
 
-        return response()->json($jadwal, Response::HTTP_OK); 
-
+        return response()->json($jadwal, Response::HTTP_OK);
     }
 
     /**
@@ -111,36 +111,32 @@ class ApiJadwalController extends Controller
     {
 
         $jadwal = Jadwal::findOrFail($id);
-        $validator = Validator::make ($request->all(), [
+        $validator = Validator::make($request->all(), [
             'tgl_perform' => ['required'],
             'tipe_id' => ['required'],
             'acara' => ['required'],
             'jam' => ['required'],
             'user_id' => ['required'],
-            'alamat' => ['required']
-            
+            'alamat' => ['required'],
+            'hp' => ['required']
+
         ]);
-        
-        if($validator->fails()) {
-            return response()->json($validator->errors(),
-            Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        if ($validator->fails()) {
+            return response()->json(
+                $validator->errors(),
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
         }
 
-        try{
-            $jadwal ->update($request-> all());
-            // $response=[
-            //     'message' => 'berhasil',
-            // 'data' => $jadwal
-            // ];
-
+        try {
+            $jadwal->update($request->all());
             return response()->json($jadwal, Response::HTTP_OK);
-
-        } catch(QueryException $e) {
+        } catch (QueryException $e) {
             return response()->json([
-                'message' => "failed" .$e->errorInfo
+                'message' => "failed" . $e->errorInfo
             ]);
         }
-
     }
 
     /**
@@ -151,15 +147,15 @@ class ApiJadwalController extends Controller
      */
     public function destroy($id)
     {
-        $jadwal= Jadwal::findOrFail($id);
-      
-        try{
-            $jadwal ->delete();
-            return response()->json($jadwal, Response::HTTP_OK);
+        $jadwal = Jadwal::findOrFail($id);
+  $jadwal->pembayaran()->delete();
 
-        } catch(QueryException $e) {
+        try {
+            $jadwal->delete();
+            return response()->json($jadwal, Response::HTTP_OK);
+        } catch (QueryException $e) {
             return response()->json([
-                'message' => "failed" .$e->errorInfo
+                'message' => "failed" . $e->errorInfo
             ]);
         }
     }

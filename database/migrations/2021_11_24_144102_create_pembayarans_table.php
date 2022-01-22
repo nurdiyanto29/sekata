@@ -15,10 +15,12 @@ class CreatePembayaransTable extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->integer('jadwal_id');
+            $table->foreignId('jadwal_id');
             $table->string('bukti_bayar');
             $table->timestamp('time')->default(now());
             $table->timestamps();
+
+            $table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
         });
     }
 

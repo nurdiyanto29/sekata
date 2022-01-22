@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
+use App\Models\Pembayaran;
 use App\Models\Tipe;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
@@ -46,14 +47,15 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
-
+            //komentar http client post data
         $response = Http::post('http://127.0.0.1:8000/api/jadwal', [
             'tgl_perform' => $request->tgl_perform,
             'tipe_id' => $request->tipe_id,
             'user_id' => $request->user_id,
             'alamat' => $request->alamat,
             'jam' => $request->jam,
-            'acara' => $request->acara
+            'hp' => $request->hp,
+            'acara' => $request->acara,
         ]);
         $response->json();
 
@@ -103,13 +105,15 @@ class JadwalController extends Controller
             'user_id' => $request->user_id,
             'alamat' => $request->alamat,
             'jam' => $request->jam,
+            'hp' => $request->hp,
             'acara' => $request->acara
         ]);
         $response->json();
+        // dd($response);
         return redirect()->route('jadwal.index');
     }
     /**}
-     * 
+     *
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -117,7 +121,10 @@ class JadwalController extends Controller
      */
     public function destroy($id)
     {
-     
+
+        // $data= Jadwal::findorfail($id);
+        // $data->pembayaran()->delete();
+        // $data->delete();
         $response = Http::delete('http://127.0.0.1:8000/api/jadwal/' . $id);
         $response->json();
         return redirect()->route('jadwal.index');

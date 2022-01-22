@@ -25,9 +25,38 @@
                         <h2>Tipe :  {{$data['tipe_perform']}}</h2>
                     </div>
                     <div class="about-text">
-                        <h4>
+                        <p>
                             {{$data['deskripsi']}}
-                        </h4>
+                        </p>
+                        <hr>
+                        <table class="table table-dark">
+                            <h4>Jadwal Perform</h4>
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Jam</th>
+                                    <th scope="col">Lokasi</th>
+                                </tr>
+                            </thead>
+                          
+                            @php
+                            $i=1;
+                            $x=1;
+                        @endphp
+                            @foreach ($kalender as $item)
+                            @if ($item['tgl_perform'] >= date("Y-m-d", strtotime('today')) && $item['status'] == 'Sudah Bayar (Terkonfirmasi)' )
+                            <tbody>
+                              <tr>
+                                  <th scope="row">{{$i++}}</th>
+                                  <td>{{ $item['tgl_perform']}}</td>
+                                  <td>{{ $item['jam']}}</td>
+                                  <td>{{ $item['alamat']}}</td>
+                                </tr>
+                            </tbody>
+                            @endif
+                            @endforeach
+                        </table>
                     </div>
                 </div>
             </div>
@@ -58,9 +87,13 @@
                                     {{-- @endforeach --}}
                                 </select>
                         </div>
+                        {{-- <div class="form-group">
+                            <label for="hp">No Tlp</label>
+                            <input type="number" class="form-control" name="hp" id="hp">
+                          </div> --}}
                         <div class="form-group">
                           <label for="tgl_perform">Tanggal Perform</label>
-                          <input type="date" class="form-control" name="tgl_perform" id="tgl_perform">
+                          <input type="date" class="form-control" name="tgl_perform" id="tgl_perform" min="{{ date("Y-m-d", strtotime('+7 day'))}}">
                         </div>
                         <div class="form-group">
                             <label for="jam">jam</label>
@@ -74,6 +107,10 @@
                           <label for="tgl_perform">Alamat Perform</label>
                           <input type="text" class="form-control" name="alamat" id="alamat">
                         </div>
+                        <div class="form-group">
+                            <label for="hp">No Tlp</label>
+                            <input type="number" class="form-control" name="hp" id="hp">
+                          </div>
                         <div class="form-group">
                             <label for="tipe_id">Tipe Perform</label>
                                 <select id="tipe_id" type="text" class="form-control" name="tipe_id">

@@ -22,18 +22,19 @@
         </div>
 
         <div class="row">
-            @foreach ($data as $d) 
-            <div class="col-lg-4 col-md-6">
+            @foreach ($data as $d)
+            <div class="col-lg-3 col-md-6">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="{{asset('tipe/'.$d['cover'])}}" alt="Image">
+                        <img class="team-img" width="200" height="200"
+                        style="border-radius:10%" src="{{asset('tipe/'.$d['cover'])}}" alt="Bear">
                         <div class="team-social">
                             <a href="{{ route('user.sewa', $d['id'])}}"><i class="fas fa-cart-arrow-down"></i></a>
                         </div>
                     </div>
                     <div class="team-text">
-                        <h2>Tipe : {{ $d['tipe_perform']}}</h2>
-                        <h2>Harga Sewa : {{ $d['harga_sewa']}}</h2>
+                        <h5>{{ $d['tipe_perform']}}</h2>
+                        <h5>Harga Sewa : {{"Rp.".number_format( $d['harga_sewa'],2,',','.')}}</h2>
                     </div>
                 </div>
             </div>

@@ -84,27 +84,42 @@ class TipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'tipe_perform' => 'required',
-            'harga_sewa' => 'required',
-            'deskripsi' => 'required',
-        ]);
 
-        $tipe = Tipe::find($id);
-        $tipe->tipe_perform = $request->get('tipe_perform');
-        $tipe->harga_sewa = $request->get('harga_sewa');
-        $tipe->deskripsi = $request->get('deskripsi');
+        $tipe = Tipe::findorfail($id);
+        $tipe->tipe_perform=$request->input('tipe_perform');
+        $tipe->harga_sewa=$request->input('harga_sewa');
+        $tipe->deskripsi=$request->input('deskripsi');
 
-        $tipe->save();
+if($request->hasFile('cover')){
+    $file = $request->file('cover');
+    $extension = $file->getClientOriginalExtension();
+    $filename= time().'.'.$extension;
+    $file->move(public_path().'/tipe',$filename);
+    $tipe->cover= $filename;
+}
+
+$tipe->save();
+
         return redirect()->route('tipe.index');
     }
+    public function update_(Request $request, $id)
+    {
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        $ubah = Tipe::findorfail($id);
+        $awal = $ubah->cover;
+
+        $dt = [
+            'tipe_perform' => $request ['tipe_perform'],
+            'harga_sewa' => $request['harga_sewa'],
+            'deskripsi' => $request['deskripsi'],
+            'cover' => $awal
+        ];
+
+        $request->cover->move(public_path().'/tipe',$awal);
+        $ubah->update($dt);
+
+        return redirect()->route('tipe.index');
+    }
     public function destroy($id)
     {
         $response = Http::delete('http://127.0.0.1:8000/api/tipe/' . $id);

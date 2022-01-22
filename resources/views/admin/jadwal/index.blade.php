@@ -32,6 +32,7 @@
                                     <th>Tipe Perform</th>
                                     <th>Alamat</th>
                                     <th>Peyewa</th>
+                                    <th>Hp</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -49,6 +50,7 @@
                                     <td>{{ $datajadwal['tipe']['tipe_perform']}}</td>
                                     <td>{{ $datajadwal['alamat']}}</td>
                                     <td>{{ $datajadwal['user']['name']}}</td>
+                                    <td>{{ $datajadwal['hp']}}</td>
                                     {{-- <td>{{ $j->tipe->tipe_perform}}</td> --}}
                                    
                                     <td>

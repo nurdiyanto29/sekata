@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jadwal extends Model
 {
-    protected $fillable = ['time', 'tgl_perform', 'tipe_perform', 'user_id', 'tipe_id', 'alamat', 'jam', 'acara'];
+    protected $fillable = ['time','hp' ,'tgl_perform', 'tipe_perform', 'user_id', 'tipe_id', 'alamat', 'jam', 'acara'];
 
     public function tipe()
     {

@@ -37,11 +37,12 @@ class HomeController extends Controller
         return view('about');
     }
     public function sewa($id)
-    {
+    {  $response = Http::get('http://127.0.0.1:8000/api/jadwal');
+        $kalender = $response->json();
         $response = Http::get('http://127.0.0.1:8000/api/tipe/' . $id);
         $data = $response->json();
         // dd($data);
-        return view('user.sewa', compact('data'));
+        return view('user.sewa', compact('data','kalender'));
     }
 
 
@@ -53,7 +54,7 @@ class HomeController extends Controller
     }
     public function bayarstore(Request $request)
     {
-       
+
         $mediaAtt = $request->bukti_bayar;
         $namaFile = $mediaAtt->getClientOriginalName();
         $response = Http::attach('bukti_bayar', file_get_contents($request->bukti_bayar), $namaFile)
@@ -77,7 +78,8 @@ class HomeController extends Controller
             'user_id' => $request->user_id,
             'alamat' => $request->alamat,
             'jam' => $request->jam,
-            'acara' => $request->acara
+            'acara' => $request->acara,
+            'hp' => $request->hp
         ]);
         $response->json();
         $idUser = auth()->user()->id;
@@ -94,6 +96,12 @@ class HomeController extends Controller
         $pesanan = Jadwal::where('user_id', $id)->orderby('created_at', 'DESC')->get();
         return view('user.pesanan.tiket', compact('pesanan'));
         // dd($pesanan);
+    }
+    public function destroy($id)
+    {
+        $response = Http::delete('http://127.0.0.1:8000/api/jadwal/' . $id);
+        $response->json();
+        return redirect()->route('tiketku');
     }
     public function pdf($id){
         $pesanan = Jadwal::where('id',$id)->get();
