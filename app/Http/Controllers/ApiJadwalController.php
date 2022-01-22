@@ -59,11 +59,6 @@ class ApiJadwalController extends Controller
 
         try {
             $jadwal = Jadwal::create($request->all());
-            // $response=[
-            //     'message' => 'transaksi berhasil',
-            // 'data' => $jadwal
-            // ];
-            // return response()->json($jadwal, Response::HTTP_OK);
             return response()->json($jadwal, Response::HTTP_CREATED);
         } catch (QueryException $e) {
             return response()->json([
@@ -81,11 +76,6 @@ class ApiJadwalController extends Controller
     public function show($id)
     {
         $jadwal = Jadwal::with('user', 'tipe')->findOrFail($id);
-        // $response=[
-        //     'message' => 'Detail transaksi',
-        // 'data' => $jadwal
-        // ];
-
         return response()->json($jadwal, Response::HTTP_OK);
     }
 
@@ -100,13 +90,6 @@ class ApiJadwalController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
 
@@ -148,8 +131,7 @@ class ApiJadwalController extends Controller
     public function destroy($id)
     {
         $jadwal = Jadwal::findOrFail($id);
-  $jadwal->pembayaran()->delete();
-
+         $jadwal->pembayaran()->delete();
         try {
             $jadwal->delete();
             return response()->json($jadwal, Response::HTTP_OK);

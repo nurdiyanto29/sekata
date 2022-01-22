@@ -52,7 +52,6 @@ class ApiPembayaranController extends Controller
             return response()->json(['error' => $validator->errors()], 401);
         }
 
-
         if ($file = $request->file('bukti_bayar')) {
             $request->file('bukti_bayar')->move('pembayaran/', $request->file('bukti_bayar')->getClientOriginalName());
             $file = $request->file('bukti_bayar')->getClientOriginalName();
