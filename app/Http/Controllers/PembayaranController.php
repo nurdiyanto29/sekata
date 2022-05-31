@@ -15,9 +15,9 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/jadwal');
+        $response = Http::get(\config('api.url').'jadwal');
         $jadwal = $response->json();
-        $response = Http::get('http://127.0.0.1:8000/api/pembayaran');
+        $response = Http::get(\config('api.url').'pembayaran');
         $data = $response->json();
         // dd($data);
         return view('admin/pembayaran/index',compact('data','jadwal'));
@@ -52,7 +52,7 @@ class PembayaranController extends Controller
      */
     public function show($id)
     {
-        $response = Http::get('http://127.0.0.1:8000/api/pembayaran/'. $id);
+        $response = Http::get(\config('api.url').'pembayaran/'. $id);
         $data = $response->json();
         return view('admin.pembayaran.detail', compact('data'));
     }
@@ -80,8 +80,8 @@ class PembayaranController extends Controller
         //
     }
     public function konfirmasi($id)
-    { 
-        // $response = Http::get('http://127.0.0.1:8000/api/jadwal/' . $id, [
+    {
+        // $response = Http::get(\config('api.url').'jadwal/' . $id, [
         //     'status' => 'sudah bayar (terkonfirmasi)'
         // ]);
         // $response->json();
@@ -100,7 +100,7 @@ class PembayaranController extends Controller
      */
     public function destroy($id)
     {
-        $response = Http::delete('http://127.0.0.1:8000/api/pembayaran/' . $id);
+        $response = Http::delete(\config('api.url').'pembayaran/' . $id);
         $response->json();
         return redirect()->route('pembayaran.index');
     }

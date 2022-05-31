@@ -21,13 +21,13 @@ class TransactionController extends Controller
     public function api()
     {
 
-        $response = Http::get('http://127.0.0.1:8000/api/transaction');
+        $response = Http::get(\config('api.url').'transaction');
         $data = $response->json();
         dd($data);
     }
 
     // $client = new Transaction(); //GuzzleHttp\Client
-    //     $url = "http://127.0.0.1:8000/api/transaction";
+    //     $url = "\config('api.url').'transaction";
 
 
     //     $response = $client->request('GET', $url, [

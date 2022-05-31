@@ -13,21 +13,21 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/tipe');
+        $response = Http::get(\config('api.url').'tipe');
         $data = $response->json();
         // dd($data);
         return view('home', compact('data'));
     }
     public function jadwalperform()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/jadwal');
+        $response = Http::get(\config('api.url').'jadwal');
         $data = $response->json();
         // dd($data);
         return view('user.jadwal', compact('data'));
     }
     public function tipe()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/tipe');
+        $response = Http::get(\config('api.url').'tipe');
         $data = $response->json();
         // dd($data);
         return view('tipe', compact('data'));
@@ -37,9 +37,9 @@ class HomeController extends Controller
         return view('about');
     }
     public function sewa($id)
-    {  $response = Http::get('http://127.0.0.1:8000/api/jadwal');
+    {  $response = Http::get(\config('api.url').'jadwal');
         $kalender = $response->json();
-        $response = Http::get('http://127.0.0.1:8000/api/tipe/' . $id);
+        $response = Http::get(\config('api.url').'tipe/' . $id);
         $data = $response->json();
         // dd($data);
         return view('user.sewa', compact('data','kalender'));
@@ -58,7 +58,7 @@ class HomeController extends Controller
         $mediaAtt = $request->bukti_bayar;
         $namaFile = $mediaAtt->getClientOriginalName();
         $response = Http::attach('bukti_bayar', file_get_contents($request->bukti_bayar), $namaFile)
-            ->post('http://127.0.0.1:8000/api/pembayaran', [
+            ->post(\config('api.url').'pembayaran', [
                 'jadwal_id' => $request->jadwal_id,
                 'bukti_bayar' => $request->bukti_bayar
             ]);
@@ -72,7 +72,7 @@ class HomeController extends Controller
         $request->validate([
             'tgl_perform' => ['required',  'max:255', 'unique:jadwals']
         ]);
-        $response = Http::post('http://127.0.0.1:8000/api/jadwal', [
+        $response = Http::post(\config('api.url').'jadwal', [
             'tgl_perform' => $request->tgl_perform,
             'tipe_id' => $request->tipe_id,
             'user_id' => $request->user_id,
@@ -91,7 +91,7 @@ class HomeController extends Controller
     public function tiketku()
     {
         $id = auth()->user()->id;
-        // $response = Http::get('http://127.0.0.1:8000/api/jadwal/' , $id);
+        // $response = Http::get(\config('api.url').'jadwal/' , $id);
         // $pesanan = $response->json();
         $pesanan = Jadwal::where('user_id', $id)->orderby('created_at', 'DESC')->get();
         return view('user.pesanan.tiket', compact('pesanan'));
@@ -99,7 +99,7 @@ class HomeController extends Controller
     }
     public function destroy($id)
     {
-        $response = Http::delete('http://127.0.0.1:8000/api/jadwal/' . $id);
+        $response = Http::delete(\config('api.url').'jadwal/' . $id);
         $response->json();
         return redirect()->route('tiketku');
     }

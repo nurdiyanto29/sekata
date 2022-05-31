@@ -18,7 +18,7 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/jadwal');
+        $response = Http::get(\config('api.url').'jadwal');
         $data = $response->json();
         // dd($data);
         return view('admin/jadwal/index', compact('data'));
@@ -34,7 +34,7 @@ class JadwalController extends Controller
     {
         // $inventariss = Inventaris::orderBy('id','asc')
         $user = User::orderBy('id', 'asc')->get();
-        $response = Http::get('http://127.0.0.1:8000/api/tipe');
+        $response = Http::get(\config('api.url').'tipe');
         $tipe = $response->json();
         return view('admin/jadwal/create', compact('tipe', 'user'));
     }
@@ -48,7 +48,7 @@ class JadwalController extends Controller
     public function store(Request $request)
     {
             //komentar http client post data
-        $response = Http::post('http://127.0.0.1:8000/api/jadwal', [
+        $response = Http::post(\config('api.url').'jadwal', [
             'tgl_perform' => $request->tgl_perform,
             'tipe_id' => $request->tipe_id,
             'user_id' => $request->user_id,
@@ -82,9 +82,9 @@ class JadwalController extends Controller
     public function edit($id)
     {
         $user = User::orderBy('id', 'asc')->get();
-        $response = Http::get('http://127.0.0.1:8000/api/tipe');
+        $response = Http::get(\config('api.url').'tipe');
         $tipe = $response->json();
-        $response = Http::get('http://127.0.0.1:8000/api/jadwal/' . $id);
+        $response = Http::get(\config('api.url').'jadwal/' . $id);
         $jadwal = $response->json();
         return view('admin.jadwal.edit', compact('jadwal', 'user', 'tipe'));
     }
@@ -99,7 +99,7 @@ class JadwalController extends Controller
     public function update(Request $request, $id)
     {
 
-        $response = Http::put('http://127.0.0.1:8000/api/jadwal/' . $id, [
+        $response = Http::put(\config('api.url').'jadwal/' . $id, [
             'tgl_perform' => $request->tgl_perform,
             'tipe_id' => $request->tipe_id,
             'user_id' => $request->user_id,
@@ -121,11 +121,7 @@ class JadwalController extends Controller
      */
     public function destroy($id)
     {
-
-        // $data= Jadwal::findorfail($id);
-        // $data->pembayaran()->delete();
-        // $data->delete();
-        $response = Http::delete('http://127.0.0.1:8000/api/jadwal/' . $id);
+        $response = Http::delete(\config('api.url').'jadwal/' . $id);
         $response->json();
         return redirect()->route('jadwal.index');
     }

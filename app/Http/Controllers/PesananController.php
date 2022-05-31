@@ -13,21 +13,21 @@ class PesananController extends Controller
 
     public function pesanan($id)
     {
-        // $response = Http::post('http://127.0.0.1:8000/api/jadwal', [
+        // $response = Http::post(\config('api.url').'jadwal', [
         //     'tgl_perform' => $request->tgl_perform,
-        //     'tipe_id' => $request->tipe_id,          
-        //     'user_id' => $request->user_id,          
-        //     'alamat' => $request->alamat         
+        //     'tipe_id' => $request->tipe_id,
+        //     'user_id' => $request->user_id,
+        //     'alamat' => $request->alamat
         // ]);
         // $response->json();
 
 // return redirect()->route('jadwal.index');
-        $response = Http::get('http://127.0.0.1:8000/api/jadwal/'.$id);
+        $response = Http::get(\config('api.url').'jadwal/'.$id);
         $data = $response->json();
         dd($data);
         // return view('user/pesanan/index',compact('data'));
     }
 
-    
-    
+
+
 }

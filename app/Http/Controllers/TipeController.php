@@ -15,7 +15,7 @@ class TipeController extends Controller
      */
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/tipe');
+        $response = Http::get(\config('api.url').'tipe');
         $tipe = $response->json();
         return view('admin/tipe/index', compact('tipe'));
     }
@@ -41,7 +41,7 @@ class TipeController extends Controller
         $foto = $request->cover;
         $namaFile = $foto->getClientOriginalName();
         $response = Http::attach('cover', file_get_contents($request->cover), $namaFile)
-            ->post('http://127.0.0.1:8000/api/tipe', [
+            ->post(\config('api.url').'tipe', [
                 'tipe_perform' => $request->tipe_perform,
                 'harga_sewa' => $request->harga_sewa,
                 'deskripsi' => $request->deskripsi
@@ -70,7 +70,7 @@ class TipeController extends Controller
      */
     public function edit($id)
     {
-        $response = Http::get('http://127.0.0.1:8000/api/tipe/' . $id);
+        $response = Http::get(\config('api.url').'tipe/' . $id);
         $tipe = $response->json();
         return view('admin.tipe.edit', compact('tipe'));
     }
@@ -122,7 +122,7 @@ $tipe->save();
     }
     public function destroy($id)
     {
-        $response = Http::delete('http://127.0.0.1:8000/api/tipe/' . $id);
+        $response = Http::delete(\config('api.url').'tipe/' . $id);
         $response->json();
         return redirect()->route('tipe.index');
     }
