@@ -1,19 +1,6 @@
 @extends('layouts/app2')
 @section('content')
 
-<div class="content-wrapper">
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Edit Data Jadwal</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
                     <section class="content">
                         <div class="container-fluid">
                           <div class="row">
@@ -73,15 +60,5 @@
                           <!-- /.row -->
                         </div><!-- /.container-fluid -->
                       </section>
-
-                    <!-- /.card -->
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </section>
-    </div>
 
   @endsection

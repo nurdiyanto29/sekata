@@ -1,19 +1,6 @@
 @extends('layouts/app2')
 @section('content')
 
-<div class="content-wrapper">
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Kelola Data Jadwal</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
                     <section class="content">
                         <div class="container-fluid">
                           <div class="row">
@@ -41,7 +28,7 @@
                                                 <option value={{ $b->id}}>{{ $b->tipe_perform}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>  
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="tipe_id">Penyewa</label>
@@ -51,8 +38,8 @@
                                                 <option value={{ $u->id}}>{{ $u->name}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>  
-                                    </div>          
+                                        </div>
+                                    </div>
                                   </div>
                                   <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -65,7 +52,7 @@
                           <!-- /.row -->
                         </div><!-- /.container-fluid -->
                       </section>
-    
+
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
