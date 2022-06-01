@@ -94,7 +94,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="team-item">
                     <div class="team-img">
-                        <img class="team-img" width="200" height="200"
+                        <img class="team-img"
                         style="border-radius:10%" src="{{asset('tipe/'.$d['cover'])}}" alt="Bear">
                         <div class="team-social">
                             <a href="{{ route('user.sewa', $d['id'])}}"><i class="fas fa-cart-arrow-down"></i></a>
