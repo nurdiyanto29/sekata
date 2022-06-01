@@ -1,4 +1,16 @@
 @extends('layouts/appUser')
+@push('css')
+<link rel="stylesheet" type="text/css" href="{{asset('https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css')}}">
+<style>
+    body {
+  position: absolute;
+    color: #757575;
+    background: #ffffff;
+    font-family: 'open sans', sans-serif;
+    min-width: fit-content;
+}
+</style>
+@endpush
 @section('content')
   <!-- Page Header Start -->
   <div class="page-header mb-0">
@@ -34,6 +46,7 @@
                                         <th>Tipe Perform</th>
                                         <th>Alamat Perform</th>
                                         <th>Status Pesanan</th>
+                                        <th><i class="fas fa-cog"></i></th>
                                     </tr>
                                 </thead>
 
@@ -71,3 +84,27 @@
     </section>
 
  @endsection
+
+ @push('js')
+
+<script type="text/javascript" charset="utf8" src="{{asset('https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js')}}"></script>
+ <script>
+    $(function() {
+
+           $("#example1").DataTable({
+               "responsive": true,
+               "autoWidth": false,
+           });
+           $('#example2').DataTable({
+               "paging": true,
+               "lengthChange": true,
+               "searching": false,
+               "ordering": true,
+               "info": true,
+               "autoWidth": false,
+               "responsive": true,
+           });
+           });
+
+   </script>
+ @endpush

@@ -11,8 +11,8 @@
         <link href="{{asset('img/favicon.ico')}}" rel="icon">
 
         <!-- Google Font -->
-        <link href="{{asset('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700')}}" rel="stylesheet"> 
-        
+        <link href="{{asset('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700')}}" rel="stylesheet">
+
         <!-- CSS Libraries -->
         <link href="{{asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css')}}" rel="stylesheet">
@@ -23,6 +23,8 @@
 
         <!-- Template Stylesheet -->
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
+
+        @stack('css')
     </head>
 
     <body>
@@ -40,7 +42,7 @@
                         <a href="{{ route('jadwalperform') }}" class="nav-item nav-link">Jadwal Perform</a>
                         <a href="{{ route('tipe') }}" class="nav-item nav-link">Sewa Barongsai</a>
                         <a href="{{ route('tiketku') }}" class="nav-item nav-link">Pesananku</a>
-                        <a href="{{ route('about') }}" class="nav-item nav-link">Tetang Kami</a>             
+                        <a href="{{ route('about') }}" class="nav-item nav-link">Tetang Kami</a>
                         @guest
           <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -89,10 +91,10 @@
                                     <p><i class="fa fa-map-marker-alt"></i>Jalan bali 60 Madiun Jawa Timur</p>
                                     <p><i class="fa fa-phone-alt"></i>08562569695</p>
                                     <p><i class="fa fa-envelope"></i>sekatamadiun@gmail.com</p>
-                                   
+
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="col-lg-5">
@@ -121,19 +123,20 @@
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
         <!-- JavaScript Libraries -->
-        <script src="{{asset('https://code.jquery.com/jquery-3.4.1.min.js')}}"></script>
+        <script src="{{('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js')}}" integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="{{asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('lib/easing/easing.min.js')}}"></script>
         <script src="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
         <script src="{{asset('lib/tempusdominus/js/moment.min.js')}}"></script>
         <script src="{{asset('lib/tempusdominus/js/moment-timezone.min.js')}}"></script>
         <script src="{{asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-        
+
         <!-- Contact Javascript File -->
         <script src="{{asset('mail/jqBootstrapValidation.min.js')}}"></script>
         <script src="{{asset('mail/contact.js')}}"></script>
 
         <!-- Template Javascript -->
         <script src="{{asset('js/main.js')}}"></script>
+        @stack('js')
     </body>
 </html>
