@@ -109,6 +109,8 @@ class JadwalController extends Controller
             'acara' => $request->acara
         ]);
         $response->json();
+
+
         // dd($response);
         return redirect()->route('jadwal.index');
     }

@@ -16,8 +16,8 @@ class Tipe extends Model
     {
         return $this->hasMany(Jadwal::class);
     }
-    // public function sewa()
-    // {
-    //     return $this->hasMany(Sewa::class);
-    // }
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
 }

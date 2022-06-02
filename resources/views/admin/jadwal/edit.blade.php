@@ -8,7 +8,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Tambah Jadwal</h3>
+                            <h3 class="card-title">Edit Jadwal</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -42,7 +42,7 @@
                                     <div class="col-md-12">
                                         <select id="tipe_id" type="text" class="form-control" name="tipe_id">
                                             @foreach ($tipe as $b)
-                                                <option value={{ $b['id'] }}>{{ $b['tipe_perform'] }}</option>
+                                                <option value="{{ $b['id'] }}" {{ $b['id'] == $jadwal['tipe_id'] ?'selected' : ''  }}>{{ $b['tipe_perform'] }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -57,7 +57,7 @@
                                     <div class="col-md-12">
                                         <select id="user_id" type="text" class="form-control" name="user_id">
                                             @foreach ($user as $u)
-                                                <option value={{ $u['id'] }}>{{ $u['name'] }}</option>
+                                            <option value="{{ $u['id'] }}" {{ $u['id'] == $jadwal['user_id'] ?'selected' : ''  }}>{{ $u['name'] }}</option>
                                             @endforeach
                                         </select>
                                     </div>

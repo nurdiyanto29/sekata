@@ -41,7 +41,7 @@
           <div class="row">
             @foreach ($pesanan as $p )
             <div class="col-12 col-sm-6">
-          
+
               <div class="col-12">
                 <img src="../../dist/img/tf.jpg" class="product-image" alt="Product Image">
               </div>
@@ -55,6 +55,7 @@
                             <option value={{ $p->id}}>ID SEWA :{{ $p->id}}</option>
                         </select>
                 </div>
+                <input type="hidden" name="tipe_id" id="tipe_id" value="{{ $p->tipe->id}}">
              <h5 class= "my-3">Pemesan        :{{ $p->user->name}}</h5>
              <h5 class= "my-3">Tanggal Perform:{{ $p->tgl_perform}}</h5>
              <h5 class= "my-3">Alamat Perform :{{ $p->alamat}}</h5>
@@ -68,8 +69,8 @@
                 </h5>
               </div>
               <hr>
-              
-             {{-- <p style="color:rgb(255, 38, 0);"></p> 
+
+             {{-- <p style="color:rgb(255, 38, 0);"></p>
               <H4 style="color:rgb(255, 38, 0);"><b>Silahkan Lakukan Transfer Pada Rekening</b></H4>
               <H3>An:Sekata Madiun</H3> --}}
               <div class="form-group row">
@@ -81,7 +82,7 @@
             <hr>
             <div class="bg-gray py-2 px-3 mt-4">
               <h2 class="mb-0">
-               
+
                Total Bayar : {{"Rp.".number_format( $p->tipe->harga_sewa,2,',','.')}}
               </h2>
             </div>
@@ -95,7 +96,7 @@
             </div>
             @endforeach
           </div>
-  
+
         </div>
         <!-- /.card-body -->
       </div>

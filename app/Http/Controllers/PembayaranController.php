@@ -81,10 +81,6 @@ class PembayaranController extends Controller
     }
     public function konfirmasi($id)
     {
-        // $response = Http::get(\config('api.url').'jadwal/' . $id, [
-        //     'status' => 'sudah bayar (terkonfirmasi)'
-        // ]);
-        // $response->json();
                 $file = Jadwal::where('id',$id)->first();
                 $file-> status = 'Sudah Bayar (Terkonfirmasi)';
                 $file->save();

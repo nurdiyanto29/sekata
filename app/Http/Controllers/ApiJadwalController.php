@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Jadwal;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Pembayaran;
 
 use Symfony\Component\HttpFoundation\Response;
 
@@ -114,6 +115,9 @@ class ApiJadwalController extends Controller
 
         try {
             $jadwal->update($request->all());
+            $pembayaran = Pembayaran::where('jadwal_id', $id)->first();
+            $pembayaran-> tipe_id = $request->get('tipe_id');
+            $pembayaran->update();
             return response()->json($jadwal, Response::HTTP_OK);
         } catch (QueryException $e) {
             return response()->json([
@@ -134,6 +138,8 @@ class ApiJadwalController extends Controller
          $jadwal->pembayaran()->delete();
         try {
             $jadwal->delete();
+            $pembayaran=Pembayaran::where('jadwal_id',$id);
+            $pembayaran->delete();
             return response()->json($jadwal, Response::HTTP_OK);
         } catch (QueryException $e) {
             return response()->json([

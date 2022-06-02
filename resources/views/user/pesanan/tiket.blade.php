@@ -2,13 +2,7 @@
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{asset('https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css')}}">
 <style>
-    body {
-  position: absolute;
-    color: #757575;
-    background: #ffffff;
-    font-family: 'open sans', sans-serif;
-    min-width: fit-content;
-}
+
 </style>
 @endpush
 @section('content')
@@ -22,67 +16,32 @@
         </div>
     </div>
 </div>
-<!-- Page Header End -->
 
-<div class="content-wrapper">
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
 
-                    <!-- /.card -->
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"></h3>
+  <div class="food mt-0">
+            <div class="container">
+                <div class="row align-items-center">
+                     @foreach ($pesanan as $p)
+                    <div class="col-md-4">
+                        <div class="food-item">
+                            <i class="fas fa-ticket-alt"></i>
+                            <h2>{{ $p['tipe']['tipe_perform']}}</h2>
+                            <p>
+                               Pesanan Pada tanggal {{ Carbon\Carbon::parse($p['created_at'] )->isoFormat('D MMM Y')}}, dengan tanggal perform pementasan barongsai pada {{ Carbon\Carbon::parse($p['tgl_perform'] )->isoFormat('D MMM Y')}}  dengan alamat perform di {{ $p['alamat'] }}
+                            </p>
+                             @if ($p['status'] == 'Sudah Bayar (Terkonfirmasi)')
+                            <a href="">Cetak e-Tiket</a>
+                             @else
+                             <p style="color:orange">Pesanan anda belum di konfirmasi oleh admin. Silahkan tunggu</>
+                             @endif
                         </div>
-
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Tanggal Perform</th>
-                                        <th>Tipe Perform</th>
-                                        <th>Alamat Perform</th>
-                                        <th>Status Pesanan</th>
-                                        <th><i class="fas fa-cog"></i></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @php
-                                    $i=1;
-                                    $x=1;
-                                @endphp
-                                 @foreach ($pesanan as $p)
-                                    <tr>
-                                        <td><b>{{$i++}}<b></td>
-                                        <td>{{ $p['tgl_perform'] }}</td>
-                                        <td>{{ $p['tipe']['tipe_perform']}}</td>
-                                        <td>{{ $p['alamat'] }}</td>
-                                        <td>{{ $p['status'] }}</td>
-                                        <td>
-                                            @if ($p['status'] == 'Sudah Bayar (Terkonfirmasi)')
-                                            <a href="{{ route('pdf', $p['id'])}}" type="submit" class="btn btn-sm btn-primary" >e-nota</a></td>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
+                    @endforeach
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
-    </section>
-
+<!-
  @endsection
 
  @push('js')

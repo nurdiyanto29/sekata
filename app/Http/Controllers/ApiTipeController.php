@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use App\Models\Tipe;
 use Illuminate\Database\QueryException;
@@ -116,7 +118,7 @@ class ApiTipeController extends Controller
                 'tipe_perform' => 'required',
                 'deskripsi' => 'required',
                 'harga_sewa' => 'required',
-               
+
             ]);
             if ($validator->fails()) {
                 return response()->json(
@@ -154,10 +156,18 @@ class ApiTipeController extends Controller
      */
     public function destroy($id)
     {
+
+
         $tipe = Tipe::findOrFail($id);
         $tipe->jadwal()->delete();
+        $tipe->pembayaran()->delete();
+
         try {
             $tipe->delete();
+            $jadwal=Jadwal::where('tipe_id',$id);
+            $jadwal->delete();
+            $pembayaran=Pembayaran::where('tipe_id', $$id);
+            $pembayaran->delete();
             return response()->json($tipe, Response::HTTP_OK);
         } catch (QueryException $e) {
             return response()->json([

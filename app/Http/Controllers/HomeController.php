@@ -60,7 +60,8 @@ class HomeController extends Controller
         $response = Http::attach('bukti_bayar', file_get_contents($request->bukti_bayar), $namaFile)
             ->post(\config('api.url').'pembayaran', [
                 'jadwal_id' => $request->jadwal_id,
-                'bukti_bayar' => $request->bukti_bayar
+                'bukti_bayar' => $request->bukti_bayar,
+                'tipe_id' => $request->tipe_id
             ]);
         $response->json();
         //  dd($response);

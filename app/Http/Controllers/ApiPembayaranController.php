@@ -43,6 +43,7 @@ class ApiPembayaranController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
+                'tipe_id' => 'required',
                 'jadwal_id' => 'required',
                 'bukti_bayar' => 'required',
             ]
@@ -60,6 +61,7 @@ class ApiPembayaranController extends Controller
             $bayar = new Pembayaran();
             $bayar->bukti_bayar = $file;
             $bayar->jadwal_id = $request->jadwal_id;
+            $bayar->tipe_id = $request->tipe_id;
             $bayar->save();
 
             return response()->json($bayar, Response::HTTP_OK);

@@ -13,15 +13,7 @@ class PesananController extends Controller
 
     public function pesanan($id)
     {
-        // $response = Http::post(\config('api.url').'jadwal', [
-        //     'tgl_perform' => $request->tgl_perform,
-        //     'tipe_id' => $request->tipe_id,
-        //     'user_id' => $request->user_id,
-        //     'alamat' => $request->alamat
-        // ]);
-        // $response->json();
 
-// return redirect()->route('jadwal.index');
         $response = Http::get(\config('api.url').'jadwal/'.$id);
         $data = $response->json();
         dd($data);
